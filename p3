@@ -1,0 +1,25 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+public class Pract4 {
+    static String driverPath = "C:\\Users\\shyam\\Downloads\\geckodriver-v0.33.0-win32\\geckodriver.exe";
+    public static WebDriver dr;
+    public static void main(String[] args) {
+        int a=10, b=20;
+        System.out.println("Hi...");
+        System.out.println(a+b);
+        System.out.println("Selenium Demo..."); 
+        try {
+            System.setProperty("webdriver.gecko.driver", driverPath);
+            System.out.println("One"); 
+            FirefoxOptions options = new FirefoxOptions();
+            options.setCapability("marionette", true); 
+            dr = new FirefoxDriver(options);
+            dr.get("https://www.google.com");
+            dr.manage().window().maximize();
+            dr.quit();
+        } catch (Exception ex) {
+            System.out.println("Error: " + ex.toString());
+        }
+    }
+}
