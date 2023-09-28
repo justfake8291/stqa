@@ -1,0 +1,21 @@
+package javaaplication;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+public class Prac7_STQA {
+    static String driverpath = "C:\\Users\\Karan\\Desktop\\Karan Save\\STQA packages\\geckodriver-v0.33.0-win32\\geckodriver.exe";
+    public static WebDriver driver;
+    public static void main(String[] args) {
+        System.setProperty("webdriver.gecko.driver", driverpath);
+        FirefoxOptions options = new FirefoxOptions();
+        options.setCapability("marionette", true);
+        driver = new FirefoxDriver(options);
+        driver.get("https://www.google.com");
+        java.util.List<WebElement> allElements = driver.findElements(By.xpath("//*"));
+        System.out.println("Total number of objects on the webpage: " + allElements.size());
+        driver.quit();
+    }
+}
