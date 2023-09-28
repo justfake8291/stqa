@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Car Brands</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Car Brands</h1>
+      <form>
+        <label for="carBrands">Select a car brand:</label>
+        <select id="carBrands" name="carBrands">
+          <option value="audi">Audi</option>
+          <option value="bmw">BMW</option>
+          <option value="mercedes">Mercedes-Benz</option>
+          <option value="toyota">Toyota</option>
+          <option value="honda">Honda</option>
+          <option value="ford">Ford</option>
+          <option value="chevrolet">Chevrolet</option>
+          <option value="volkswagen">Volkswagen</option>
+          <option value="nissan">Nissan</option>
+          <option value="hyundai">Hyundai</option>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
+
+
+
+java code :
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class pract8{
+
+    public static WebDriver driver;
+
+    public static void main(String[] args) {
+        try {
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
+        driver.get("http://127.0.0.1:5500/prac8.html"); // Insert Your Website URL (start from (file: //) for local files)
+
+        WebElement comboBox = driver.findElement(By.xpath("//*"));
+        comboBox.click(); // Click the combo box
+
+        java.util.List<WebElement> optionCount = comboBox.findElements(By.tagName("option"));
+        System.out.println("Number Of Options In The List/Combobox is: " + optionCount.size());
+
+        for (WebElement option : optionCount) {
+            System.out.println(option.getText());
+        }
+            Thread.sleep(10000); //will stay open for 10 seconds 
+        } 
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        finally{
+        driver.quit();}
+    }
+}
